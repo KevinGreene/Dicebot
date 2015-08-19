@@ -17,6 +17,7 @@ defmodule DiceRoller do
     case Regex.run(dice_regex, dice_term) do
       [_, n_s] ->
         String.to_integer(n_s)
+      
       [_, n_s, "d" <> d_i] ->
         n = String.to_integer(n_s)
         d = String.to_integer(d_i)
@@ -42,8 +43,6 @@ defmodule DiceRoller do
         s = String.to_integer(s_i)
 
         dice_array  = build_dice_array(n, d)
-        |> sort
-        |> reverse
         |> count fn(x) -> x >= s end
 
     end
