@@ -2,7 +2,7 @@ defmodule DiceRoller do
   import Enum
     
   def dice_regex do
-    {_, r} =  Regex.compile "([0-9]+)(d[0-9])?(k[0-9])?"
+    {_, r} =  Regex.compile "([0-9]+)(d[0-9]+)?(k[0-9]+)?"
     r
   end
 
