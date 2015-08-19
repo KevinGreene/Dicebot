@@ -13,7 +13,7 @@ defmodule DiceSlackbot do
   end
 
   def handle_message(message = %{type: "message"}, slack, state) do
-    case message.text do
+    case message[:text] do
       "dicebot" <> dice_string ->
         result = DiceRoller.roll_dice(dice_string)
         username = slack.users[message.user].name
@@ -22,7 +22,7 @@ defmodule DiceSlackbot do
       _ ->
     end
 
-    {:ok, state ++ [message.text]}
+    {:ok, state ++ [message[:text]]}
   end
 
   def handle_message(_message, _slack, state) do

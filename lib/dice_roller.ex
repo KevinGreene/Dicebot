@@ -2,7 +2,7 @@ defmodule DiceRoller do
   import Enum
     
   def dice_regex do
-    {_, r} =  Regex.compile "([0-9]+)(d[0-9]+)?(k[0-9]+)?"
+    {_, r} =  Regex.compile "([0-9]+)(d[0-9]+)?([ks][0-9]+)?"
     r
   end
 
@@ -25,7 +25,6 @@ defmodule DiceRoller do
         sum dice_array
 
       [_, n_s, "d" <> d_i, "k" <> k_i] ->
-        
         n = String.to_integer(n_s)
         d = String.to_integer(d_i)
         k = String.to_integer(k_i)
@@ -36,6 +35,17 @@ defmodule DiceRoller do
         |> take k
 
         sum dice_array
+
+      [_, n_s, "d" <> d_i, "s" <> s_i] ->
+        n = String.to_integer(n_s)
+        d = String.to_integer(d_i)
+        s = String.to_integer(s_i)
+
+        dice_array  = build_dice_array(n, d)
+        |> sort
+        |> reverse
+        |> count fn(x) -> x >= s end
+
     end
   end
 

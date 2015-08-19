@@ -35,11 +35,11 @@ Current Features
 
 * Multiple terms - `dicebot 1d6+3`
 * Keep - `dicebot 4d6k3`
+* Success dice - `dicebot 10d10s7`
 
 Planned Features
 ----------------
 
 * Subtraction - `dicebot 1d6-2`
 * Exploding dice - `dicebot 4d6e6`
-* Success dice - `dicebot 10d10s7`
 * Fudge dice - `dicebot 4df`
