@@ -35,7 +35,7 @@ Current Features
 
 * Multiple terms - `dicebot 1d6+3`
 * Keep - `dicebot 4d6k3`
-* Success dice - `dicebot 10d10s7`
+* Success dice - `dicebot 10d10s7` - Displays the number of dice that rolled at least the number after 's'
 
 Planned Features
 ----------------
