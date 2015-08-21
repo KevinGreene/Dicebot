@@ -22,7 +22,7 @@ defmodule DiceRoller do
         n = String.to_integer(n_s)
         d = String.to_integer(d_i)
 
-        dice_array = build_dice_array n, d        
+        {:ok, dice_array} = build_dice_array n, d        
         sum dice_array
 
       [_, n_s, "d" <> d_i, "k" <> k_i] ->
@@ -30,7 +30,7 @@ defmodule DiceRoller do
         d = String.to_integer(d_i)
         k = String.to_integer(k_i)
 
-        dice_array  = build_dice_array(n, d)
+        {:ok, dice_array}  = build_dice_array(n, d)
         |> sort
         |> reverse
         |> take k
@@ -42,17 +42,20 @@ defmodule DiceRoller do
         d = String.to_integer(d_i)
         s = String.to_integer(s_i)
 
-        dice_array  = build_dice_array(n, d)
+        {:ok, dice_array} = build_dice_array(n, d)
         |> count fn(x) -> x >= s end
 
     end
   end
 
   def build_dice_array(number, dice) do
-    if number < 500 do
-      for n <- 1..number, do: :random.uniform dice
-    else
-      1
+    cond do
+      number > 500 ->
+      {:error, "Don't roll that many dice"}
+      dice > 500 ->
+      {:error, "Don't roll dice that high"}
+      true ->
+      {:ok, (for n <- 1..number, do: :random.uniform dice)}
     end
   end
 end
