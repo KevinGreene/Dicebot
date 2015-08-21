@@ -49,6 +49,10 @@ defmodule DiceRoller do
   end
 
   def build_dice_array(number, dice) do
-    for n <- 1..number, do: :random.uniform dice
+    if number < 500 do
+      for n <- 1..number, do: :random.uniform dice
+    else
+      1
+    end
   end
 end
