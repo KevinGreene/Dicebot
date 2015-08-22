@@ -2,7 +2,7 @@ defmodule DiceSlackbot.Mixfile do
   use Mix.Project
 
   def project do
-    [app: :dicebot,
+    [app: :tinc,
      version: "0.0.1",
      elixir: "~> 1.0",
      build_embedded: Mix.env == :prod,
@@ -14,8 +14,8 @@ defmodule DiceSlackbot.Mixfile do
   #
   # Type `mix help compile.app` for more information
   def application do
-    [applications: [:logger, :slack],
-     mod: {Dice, []}]
+    [applications: [:logger, :slack, :httpoison],
+     mod: {Tinc, []}]
   end
 
   # Dependencies can be Hex packages:
@@ -29,6 +29,8 @@ defmodule DiceSlackbot.Mixfile do
   # Type `mix help deps` for more examples and options
   defp deps do
     [{:quickrand, "~> 1.5.0"},
+     {:httpoison, "~> 0.7.2"},
+     {:poison, "~> 1.4.0"},
      {:slack, "~> 0.2.0"},
      {:websocket_client, git: "https://github.com/jeremyong/websocket_client"}]
   end

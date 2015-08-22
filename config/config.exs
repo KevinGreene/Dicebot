@@ -8,7 +8,7 @@ use Mix.Config
 # if you want to provide default values for your application for third-
 # party users, it should be done in your mix.exs file.
 
-config :dicebot, :slack_token, System.get_env("DICEBOT_API_TOKEN")
+config :tinc, :slack_token, System.get_env("SLACK_API_TOKEN")
 
 
 # Sample configuration:
@@ -24,4 +24,5 @@ config :dicebot, :slack_token, System.get_env("DICEBOT_API_TOKEN")
 # Configuration from the imported file will override the ones defined
 # here (which is why it is important to import them last).
 #
-#     import_config "#{Mix.env}.exs"
+import_config "#{Mix.env}.exs"
+import_config "private.exs"

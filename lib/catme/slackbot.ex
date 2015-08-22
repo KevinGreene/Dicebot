@@ -1,4 +1,4 @@
-defmodule Dice.Slackbot do
+defmodule Catme.Slackbot do
 
   use Slack
 
@@ -13,10 +13,11 @@ defmodule Dice.Slackbot do
 
   def handle_message(message = %{type: "message"}, slack, state) do
     case message[:text] do
-      "dicebot" <> dice_string ->
-        result = Dice.Roller.roll_dice(dice_string)
-        username = slack.users[message.user].name
-        message_to_send = "#{username} rolled a #{result}"
+      "catme" <> cat_string ->
+        IO.puts "Getting a cat"
+        cat_link = Catme.PugFinder.get_cat
+        IO.puts "Got a cat!"
+        message_to_send = "Cats!: " <> cat_link
         send_message(message_to_send, message.channel, slack)
       _ ->
     end

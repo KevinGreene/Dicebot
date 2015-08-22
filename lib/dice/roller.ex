@@ -23,14 +23,10 @@ defmodule Dice.Roller do
         String.to_integer(n_s)
 
       [_, n_s, "d" <> d_i] ->
-
-        
-
         n = String.to_integer(n_s)
         d = String.to_integer(d_i)
 
         {:ok, dice_array}  = build_dice_array(n, d)
-        IO.puts dice_array
         sum dice_array
 
       [_, n_s, "d" <> d_i, "k" <> k_i] ->
