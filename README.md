@@ -1,7 +1,7 @@
-DiceSlackbot
-============
+Tinc
+====
 
-This Elixir project is designed to run a comprehensive Slack Bot Integration for dice rolling.
+Elixir project is designed to run a comprehensive Slack Bot Integration for dice rolling.
 
 
 Setup
@@ -13,14 +13,20 @@ https://#{your_slack_group}.slack.com/services/new/bot
 
 Grab the API token given when you created the bot
 
-Then, simply run the app with
+Add that API token to `config/private.exs` which should look like this:
 
 ```
-DICEBOT_API_TOKEN="#{your_new_api_token}" mix run --no-halt
+use Mix.Config
+
+config :tinc, :slack_token, "YOUR ACTUAL API TOKEN HERE"
 ```
 
-Basic Usage
------------
+```
+mix run --no-halt
+```
+
+Basic Dicebot Usage
+-------------------
 
 ```
 kevin [7:45 PM] 
@@ -30,15 +36,15 @@ dicebot [7:45 PM]
 kevin rolled a 5
 ```
 
-Current Features
-----------------
+Current Dicebot Features
+------------------------
 
 * Multiple terms - `dicebot 1d6+3`
 * Keep - `dicebot 4d6k3`
 * Success dice - `dicebot 10d10s7` - Displays the number of dice that rolled at least the number after 's'
 
-Planned Features
-----------------
+Planned Dicebot Features
+------------------------
 
 * Subtraction - `dicebot 1d6-2`
 * Exploding dice - `dicebot 4d6e6`
