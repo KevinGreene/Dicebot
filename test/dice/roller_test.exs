@@ -10,9 +10,10 @@ defmodule DiceTest do
   end
 
   test "Rolling dice should return the appropriate number of results" do
-    for x <- [1, 2, 3] do
-      {:ok, dice_array} =  Dice.Roller.build_dice_array(10, 10)
+    for x <- [1, 2, 3, 10, 100] do
+      {:ok, dice_array} =  Dice.Roller.build_dice_array(x, 10)
       assert x == length dice_array
     end
   end
 end
+

@@ -15,42 +15,40 @@ defmodule Dice.Roller do
   end
 
   def roll_dice_term(dice_term) do
-    
 
     case Regex.run(dice_regex, dice_term) do
       
       [_, n_s] ->
         String.to_integer(n_s)
 
-      [_, n_s, "d" <> d_i] ->
+      [_, n_s, "d" <> d_i | qualifiers] ->
         n = String.to_integer(n_s)
         d = String.to_integer(d_i)
 
         {:ok, dice_array}  = build_dice_array(n, d)
-        sum dice_array
 
-      [_, n_s, "d" <> d_i, "k" <> k_i] ->
-        n = String.to_integer(n_s)
-        d = String.to_integer(d_i)
-        k = String.to_integer(k_i)
+        IO.puts "Rolled the dice!: "
+        IO.inspect dice_array
+        
+        case qualifiers do 
+          ["k" <> k_i] ->
+            k = String.to_integer(k_i)
 
-        {:ok, dice_array}  = build_dice_array(n, d)
-                
-        dice_array
-        |> sort
-        |> reverse
-        |> take k
-        |> sum
+            dice_array
+            |> sort
+            |> reverse
+            |> take(k)
+            |> sum
 
-      [_, n_s, "d" <> d_i, "s" <> s_i] ->
-        n = String.to_integer(n_s)
-        d = String.to_integer(d_i)
-        s = String.to_integer(s_i)
+          ["s" <> s_i] ->
+            s = String.to_integer(s_i)
+            IO.puts "Successes"
+            dice_array |> count fn(x) -> x >= s end
 
-        {:ok, dice_array} = build_dice_array(n, d)
-        IO.puts dice_array
-      
-        dice_array |> count fn(x) -> x >= s end
+          _ -> 
+            sum dice_array
+        end
+
 
     end
   end
