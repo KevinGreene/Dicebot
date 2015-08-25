@@ -2,7 +2,7 @@ defmodule Dice.Roller do
   import Enum
     
   def dice_regex do
-    {_, r} =  Regex.compile "([0-9]+)(d[0-9]+)?([ks][0-9]+)?"
+    {_, r} =  Regex.compile "([0-9]+)(d[0-9]+|f)?([ks][0-9]+)?"
     r
   end
 
@@ -21,12 +21,17 @@ defmodule Dice.Roller do
       [_, n_s] ->
         String.to_integer(n_s)
 
-      [_, n_s, "d" <> d_i | qualifiers] ->
+      [_, n_s, dice | qualifiers] ->
         n = String.to_integer(n_s)
-        d = String.to_integer(d_i)
 
-        {:ok, dice_array}  = build_dice_array(n, d)
-
+        {:ok, dice_array} =
+          case dice do
+            "f" ->
+              build_fudge_dice_array(n)
+            "d" <> d_i ->
+              d = String.to_integer(d_i)
+              build_dice_array(n, d)
+          end
         IO.puts "Rolled the dice!: "
         IO.inspect dice_array
         
@@ -43,7 +48,7 @@ defmodule Dice.Roller do
           ["s" <> s_i] ->
             s = String.to_integer(s_i)
             IO.puts "Successes"
-            dice_array |> count fn(x) -> x >= s end
+          dice_array |> count fn(x) -> x >= s end
 
           _ -> 
             sum dice_array
@@ -60,4 +65,12 @@ defmodule Dice.Roller do
       true -> {:ok, (for _ <- 1..number, do: :random.uniform dice)}
     end
   end
+
+  def build_fudge_dice_array(number) do
+    cond do
+      number > 500 -> {:error, "Don't roll that many dice"}
+      true -> {:ok, (for _ <- 1..number, do: :random.uniform(3) - 2)}
+    end
+  end
 end
+
