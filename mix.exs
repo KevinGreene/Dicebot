@@ -32,6 +32,7 @@ defmodule DiceSlackbot.Mixfile do
      {:httpoison, "~> 0.7.2"},
      {:poison, "~> 1.4.0"},
      {:slack, "~> 0.2.0"},
+     {:dice_roller, "~> 1.1"},
      {:websocket_client, git: "https://github.com/jeremyong/websocket_client"}]
   end
 end
