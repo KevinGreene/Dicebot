@@ -42,10 +42,10 @@ Current Dicebot Features
 * Multiple terms - `dicebot 1d6+3`
 * Keep - `dicebot 4d6k3`
 * Success dice - `dicebot 10d10s7` - Displays the number of dice that rolled at least the number after 's'
+* Subtraction - `dicebot 1d6-2`
+* Fudge dice - `dicebot 4f`
 
 Planned Dicebot Features
 ------------------------
 
-* Subtraction - `dicebot 1d6-2`
 * Exploding dice - `dicebot 4d6e6`
-* Fudge dice - `dicebot 4df`

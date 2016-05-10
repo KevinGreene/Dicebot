@@ -29,9 +29,9 @@ defmodule DiceSlackbot.Mixfile do
   # Type `mix help deps` for more examples and options
   defp deps do
     [{:quickrand, "~> 1.5.0"},
-     {:httpoison, "~> 0.7.2"},
+     {:httpoison, "~> 0.8.0"},
      {:poison, "~> 1.4.0"},
-     {:slack, "~> 0.2.0"},
+     {:slack, "~> 0.4.2"},
      {:dice_roller, "~> 1.1"},
      {:websocket_client, git: "https://github.com/jeremyong/websocket_client"}]
   end
